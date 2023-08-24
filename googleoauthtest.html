@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <button onclick="client.requestAccessToken();">Authorize</button>
+        <script src="https://accounts.google.com/gsi/client" async onload="ongsiload();"></script>
+        <script>
+            var client;
+            function ongsiload() {
+                client = google.accounts.oauth2.initTokenClient({
+                    client_id: '1027994625603-7rrb1ij4psd0u1m38gvamd2vi005283f.apps.googleusercontent.com',
+                    scope: 'https://www.googleapis.com/auth/drive.file',
+                    callback: (response) => {
+                        console.log(client);
+                    },
+                });
+                console.log(google);
+            }
+        </script>
+    </body>
+</html>
