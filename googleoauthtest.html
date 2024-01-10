@@ -19,8 +19,10 @@
                       'requestMask.includeField': 'person.names'
                     });
                   }).then(function(response) {
+                    console.log(response)
                     console.log(response.result);
                   }, function(reason) {
+                    console.log(reason)
                     console.log('Error: ' + reason.result.error.message);
                   });
             }
