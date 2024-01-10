@@ -5,7 +5,25 @@
     </head>
     <body>
         <button onclick="client.requestAccessToken();">Authorize</button><br>hi
-        <script src="https://accounts.google.com/gsi/client" async onload="ongsiload();"></script>
+        <script src="https://apis.google.com/js/api.js"></script>
+        <script>
+            gapi.client.init({
+                'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+                'clientId': '1027994625603-7rrb1ij4psd0u1m38gvamd2vi005283f.apps.googleusercontent.com',
+                'scope': 'profile',
+              }).then(function() {
+                // 3. Initialize and make the API request.
+                return gapi.client.people.people.get({
+                  'resourceName': 'people/me',
+                  'requestMask.includeField': 'person.names'
+                });
+              }).then(function(response) {
+                console.log(response.result);
+              }, function(reason) {
+                console.log('Error: ' + reason.result.error.message);
+              });
+        </script>
+        <!--<script src="https://accounts.google.com/gsi/client" async onload="ongsiload();"></script>
         <script>
             var client;
             function ongsiload() {
@@ -18,6 +36,6 @@
                 });
                 console.log(google);
             }
-        </script>
+        </script>-->
     </body>
 </html>
